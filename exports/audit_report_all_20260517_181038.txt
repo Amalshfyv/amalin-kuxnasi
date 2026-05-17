@@ -1,0 +1,29 @@
+CHARITY TRANSPARENCY LEDGER — AUDIT REPORT
+==================================================
+Generated: 2026-05-17T18:10:38
+Scope: All projects
+
+Transactions in scope: 16
+Total volume: $36,710.00
+Verified: 14
+Pending:  1
+Failed:   1
+
+LEDGER ENTRIES
+--------------------------------------------------
+TX-9021        Oct 24, 2024   Sarah Jenkins          $  2,500.00  Verified   0x33e1...a8f7
+TX-8842        Oct 24, 2024   Michael Chen           $    500.00  Pending    0x44b2...c9e1
+TX-8810        Oct 23, 2024   Global Tech Corp       $ 15,000.00  Verified   0x55cc...d0a2
+TX-8795        Oct 22, 2024   Elena Rodriguez        $  1,200.00  Verified   0x66dd...e1b3
+TX-8750        Oct 22, 2024   David Thompson         $    750.00  Failed     0x77ee...f2c4
+TX-8702        Oct 21, 2024   Amina Okafor           $  5,000.00  Verified   0x88ff...03d5
+TX-55401-88    Oct 21, 2024   Michael O'Neill        $  1,200.00  Verified   0x33e1...a8f7
+TX-E45258      May 17, 2026   Anonymous              $     50.00  Verified   0x14976a...a3d0
+TX-D1CABA      May 17, 2026   Anonymous              $     50.00  Verified   0x3b38af...c6b5
+TX-6DF5DC      May 17, 2026   Anonymous              $     50.00  Verified   0x498a47...6fd2
+TX-635F66      May 17, 2026   Anonymous              $     50.00  Verified   0xfa47da...1407
+TX-507F8D      May 17, 2026   A                      $     50.00  Verified   0xb8b90e...d504
+TX-3E2FE8      May 17, 2026   Amal ozune pul salir   $    250.00  Verified   0xccf427...a76f
+TX-04BA42      May 17, 2026   Anonymous              $     10.00  Verified   0x14f5a1...912b
+TX-74A90F      May 05, 2026   Anonymous              $     50.00  Verified   0x107e7c...4982
+TX-68EEAD      May 05, 2026   Rafiq Emi              $ 10,000.00  Verified   0x74012f...98d6
