@@ -17,6 +17,20 @@ if not hasattr(ft, "colors"):
 
     ft.colors = _FletColors()
 
+
+def _sync_ft_colors():
+    if not hasattr(ft, "colors"):
+        return
+    for attr in ("PRIMARY", "PRIMARY_CONTAINER", "ON_PRIMARY"):
+        try:
+            setattr(ft.colors, attr, getattr(T, attr))
+        except Exception:
+            pass
+
+
+# Ensure the colors shim stays in sync with the current theme values.
+_sync_ft_colors()
+
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from charity_ledger import db, theme as T, dialogs, exports
@@ -108,6 +122,12 @@ class App:
         self.page.vertical_alignment = ft.MainAxisAlignment.START
         self.page.horizontal_alignment = ft.CrossAxisAlignment.STRETCH
         self.page.theme_mode = ft.ThemeMode.LIGHT
+        # Ensure theme module values match the current settings before applying the page theme
+        try:
+            T.apply_theme(self.settings.get("theme", "Light"))
+        except Exception:
+            pass
+        _sync_ft_colors()
         self.page.theme = ft.Theme(
             color_scheme_seed=T.PRIMARY,
             font_family="Inter",
@@ -488,7 +508,7 @@ class App:
                     ft.Container(height=8),
                     ft.Container(
                         padding=ft.padding.all(10),
-                        bgcolor="#F1F5F9",
+                            bgcolor=T.BG_CARD,
                         border_radius=6,
                         content=ft.Text(str(path), size=11, color=T.TEXT_SECONDARY, selectable=True, font_family="Courier"),
                     ),
@@ -531,7 +551,7 @@ class App:
             content_padding=0,
             inset_padding=ft.padding.only(left=0, top=0, right=0, bottom=0),
             alignment=ft.alignment.center_right,
-            bgcolor="#FFFFFF",
+            bgcolor=T.BG_CARD,
             shape=ft.RoundedRectangleBorder(radius=0),
         )
         self._open(dlg)
@@ -582,10 +602,26 @@ class App:
     # ---------- settings ----------
     def _save_settings(self, new_settings: dict):
         self.settings.update(new_settings)
-        if new_settings.get("theme") == "Dark":
+        theme_choice = new_settings.get("theme")
+        if theme_choice == "Dark":
+            T.apply_theme("Dark")
             self.page.theme_mode = ft.ThemeMode.DARK
-        elif new_settings.get("theme") == "Light":
+        elif theme_choice == "Light":
+            T.apply_theme("Light")
             self.page.theme_mode = ft.ThemeMode.LIGHT
+        else:
+            # System - let the OS decide; keep current module colors in sync with theme_mode
+            T.apply_theme("Light")
+            self.page.theme_mode = ft.ThemeMode.SYSTEM
+
+        _sync_ft_colors()
+
+        # Rebuild the current route so controls pick up new `T` colors, then refresh the page
+        try:
+            self._render_route()
+        except Exception:
+            pass
+        self.page.update()
         self._snack("Settings saved.")
 
     def _reseed_data(self):
@@ -620,7 +656,8 @@ class App:
         self.page.close(dlg)
 
     def _snack(self, msg: str):
-        self.page.open(ft.SnackBar(content=ft.Text(msg, color="#FFFFFF"), bgcolor=T.TEXT_PRIMARY))
+        # Use primary color for snack background and ON_PRIMARY for text to ensure contrast
+        self.page.open(ft.SnackBar(content=ft.Text(msg, color=T.ON_PRIMARY), bgcolor=T.PRIMARY))
 
 
 def _kv(label: str, value: str):

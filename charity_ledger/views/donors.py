@@ -86,7 +86,7 @@ def _directory_card(donors, selected_id, on_select, tier_filter, on_tier_filter,
                 ft.Container(height=12),
                 ft.Container(
                     padding=ft.padding.symmetric(horizontal=16, vertical=10),
-                    bgcolor=ft.colors.ON_PRIMARY,
+                    bgcolor=T.BG_CARD,
                     content=header,
                 ),
                 T.divider(),
@@ -197,7 +197,7 @@ def _profile_card(d, on_full_profile, on_phone):
                             icon=ft.Icons.PHONE,
                             icon_color=T.TEXT_PRIMARY,
                             tooltip="Copy phone number",
-                            bgcolor=ft.colors.ON_PRIMARY,
+                            bgcolor=T.BG_CARD,
                             style=ft.ButtonStyle(
                                 shape=ft.RoundedRectangleBorder(radius=8),
                                 side=ft.BorderSide(1, T.BORDER),
@@ -231,9 +231,9 @@ def _donation_trend_card():
 
 def _top_projects_card():
     items = [
-        ("Clean Water Initiative", "Charity #0420", 4500, "#2196F3"),
-        ("Urban Tech Scholarships", "Charity #0421", 2800, "#10B981"),
-        ("Global Forest Recovery", "Charity #0422", 1200, "#10B981"),
+        ("Clean Water Initiative", "Charity #0420", 4500, T.PRIMARY),
+        ("Urban Tech Scholarships", "Charity #0421", 2800, T.SUCCESS),
+        ("Global Forest Recovery", "Charity #0422", 1200, T.SUCCESS),
     ]
     rows = []
     for name, sub, amt, color in items:

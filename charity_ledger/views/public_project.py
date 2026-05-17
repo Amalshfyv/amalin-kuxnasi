@@ -9,7 +9,7 @@ def _public_topbar(on_admin_login):
     return ft.Container(
         height=64,
         padding=ft.padding.symmetric(horizontal=24, vertical=10),
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         border=ft.border.only(bottom=ft.BorderSide(1, T.BORDER)),
         content=ft.Row(
             [
@@ -37,20 +37,20 @@ def _hero(project, on_donate, on_learn_more):
         gradient=ft.LinearGradient(
             begin=ft.alignment.top_left,
             end=ft.alignment.bottom_right,
-            colors=[ft.colors.PRIMARY_CONTAINER, ft.colors.PRIMARY],
+            colors=[T.PRIMARY_CONTAINER, T.PRIMARY],
         ),
         content=ft.Column(
             [
                 ft.Container(
                     content=ft.Row(
                         [
-                            ft.Icon(ft.Icons.CHECK_CIRCLE, color=ft.colors.ON_PRIMARY, size=14),
-                            ft.Text("Verified Humanitarian Project", size=12, color=ft.colors.ON_PRIMARY, weight=ft.FontWeight.W_700),
+                            ft.Icon(ft.Icons.CHECK_CIRCLE, color=T.ON_PRIMARY, size=14),
+                            ft.Text("Verified Humanitarian Project", size=12, color=T.ON_PRIMARY, weight=ft.FontWeight.W_700),
                         ],
                         spacing=6,
                         tight=True,
                     ),
-                    bgcolor="#10B981",
+                    bgcolor=T.SUCCESS,
                     padding=ft.padding.symmetric(horizontal=12, vertical=6),
                     border_radius=999,
                 ),
@@ -59,13 +59,13 @@ def _hero(project, on_donate, on_learn_more):
                     "Clean Water for West\nAfrican Schools",
                     size=44,
                     weight=ft.FontWeight.W_800,
-                    color=ft.colors.ON_PRIMARY,
+                    color=T.ON_PRIMARY,
                 ),
                 ft.Container(height=10),
                 ft.Text(
                     "Providing sustainable filtration systems and well infrastructure to 15\nrural schools, impacting over 4,500 students.",
                     size=14,
-                    color="#E0F2FE",
+                    color=T.PRIMARY_CONTAINER,
                 ),
                 ft.Container(height=22),
                 ft.Row(
@@ -77,7 +77,7 @@ def _hero(project, on_donate, on_learn_more):
                             text="Learn More",
                             on_click=lambda e: on_learn_more(),
                             style=ft.ButtonStyle(
-                                color=ft.colors.ON_PRIMARY,
+                                color=T.ON_PRIMARY,
                                 side=ft.BorderSide(1, T.BG_CARD),
                                 shape=ft.RoundedRectangleBorder(radius=8),
                                 padding=ft.padding.symmetric(horizontal=18, vertical=10),
@@ -114,7 +114,7 @@ def _progress_strip(project, on_donate):
                         ft.ProgressBar(
                             value=pct / 100,
                             color=T.PRIMARY,
-                            bgcolor="#E5EEF6",
+                            bgcolor=T.BG_CARD,
                             bar_height=6,
                             border_radius=999,
                         ),
@@ -179,14 +179,14 @@ def _challenge_section():
             ft.Container(height=14),
             ft.Row(
                 [
-                    ft.Container(width=140, height=110, border_radius=10, bgcolor="#1976D2",
-                                 content=ft.Icon(ft.Icons.WATER_DROP, size=36, color=ft.colors.ON_PRIMARY),
+                        ft.Container(width=140, height=110, border_radius=10, bgcolor=T.PRIMARY,
+                                 content=ft.Icon(ft.Icons.WATER_DROP, size=36, color=T.ON_PRIMARY),
                                  alignment=ft.alignment.center),
-                    ft.Container(width=140, height=110, border_radius=10, bgcolor="#0EA5E9",
-                                 content=ft.Icon(ft.Icons.SOLAR_POWER, size=36, color=ft.colors.ON_PRIMARY),
+                    ft.Container(width=140, height=110, border_radius=10, bgcolor=T.SUCCESS,
+                                 content=ft.Icon(ft.Icons.SOLAR_POWER, size=36, color=T.ON_PRIMARY),
                                  alignment=ft.alignment.center),
-                    ft.Container(width=140, height=110, border_radius=10, bgcolor="#B45309",
-                                 content=ft.Icon(ft.Icons.LANDSCAPE, size=36, color=ft.colors.ON_PRIMARY),
+                    ft.Container(width=140, height=110, border_radius=10, bgcolor=T.TIER_BRONZE_FG,
+                                 content=ft.Icon(ft.Icons.LANDSCAPE, size=36, color=T.ON_PRIMARY),
                                  alignment=ft.alignment.center),
                 ],
                 spacing=10,
@@ -350,7 +350,7 @@ def _ledger_section(on_download_audit, on_view_history):
 def _public_footer(on_admin):
     return ft.Container(
         padding=ft.padding.symmetric(horizontal=40, vertical=30),
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         border=ft.border.only(top=ft.BorderSide(1, T.BORDER)),
         content=ft.Column(
             [

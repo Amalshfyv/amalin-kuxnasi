@@ -169,7 +169,7 @@ def topbar(user_name="Amal Admin", role="Administrator",
     return ft.Container(
         height=64,
         padding=ft.padding.symmetric(horizontal=20, vertical=10),
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         border=ft.border.only(bottom=ft.BorderSide(1, T.BORDER)),
         content=ft.Row(
             [
@@ -198,7 +198,7 @@ def footer():
     return ft.Container(
         padding=ft.padding.symmetric(horizontal=24, vertical=16),
         border=ft.border.only(top=ft.BorderSide(1, T.BORDER)),
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         content=ft.Row(
             [
                 ft.Text(

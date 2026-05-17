@@ -76,7 +76,7 @@ def view(on_export_dashboard, on_export_donors, on_export_transactions,
                                   delta="+48", delta_positive=True), expand=1),
             ft.Container(kpi_card("Pending Verifications", str(k["pending"]), ft.Icons.SCHEDULE,
                                   delta="-14", delta_positive=False,
-                                  icon_bg="#FEF3C7", icon_fg=T.WARNING), expand=1),
+                                     icon_bg=T.TIER_GOLD_BG, icon_fg=T.WARNING), expand=1),
         ],
         spacing=14,
     )
@@ -121,7 +121,7 @@ def view(on_export_dashboard, on_export_donors, on_export_transactions,
                     _stat_card(
                         "Category Mix",
                         f"Funds raised by category across {len(by_cat)} categories.",
-                        ft.Container(content=bar_chart(cat_labels, cat_values, height=220, color="#10B981"), height=220),
+                           ft.Container(content=bar_chart(cat_labels, cat_values, height=220, color=T.SUCCESS), height=220),
                     ),
                     _stat_card(
                         "Top Performing Projects",

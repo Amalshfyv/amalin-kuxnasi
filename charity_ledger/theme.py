@@ -51,11 +51,13 @@ SHADOW_SOFT = ft.BoxShadow(
 )
 
 
-def card(content, padding=20, expand=None, width=None, height=None, bgcolor=BG_CARD):
+def card(content, padding=20, expand=None, width=None, height=None, bgcolor=None):
+    # Resolve bgcolor at call-time so theme changes take effect
+    _bg = BG_CARD if bgcolor is None else bgcolor
     return ft.Container(
         content=content,
         padding=padding,
-        bgcolor=bgcolor,
+        bgcolor=_bg,
         border=ft.border.all(1, BORDER),
         border_radius=CARD_RADIUS,
         expand=expand,
@@ -85,9 +87,7 @@ def primary_button(text, icon=None, on_click=None, expand=None, height=40):
         height=height,
         style=ft.ButtonStyle(
             bgcolor=PRIMARY,
-            color="#FFFFFF",
-            shape=ft.RoundedRectangleBorder(radius=8),
-            elevation=0,
+            color=ON_PRIMARY,
             padding=ft.padding.symmetric(horizontal=18, vertical=10),
             text_style=ft.TextStyle(weight=ft.FontWeight.W_600, size=13),
         ),
@@ -170,3 +170,59 @@ def fmt_money_k(v: float) -> str:
     if v >= 1_000:
         return f"${int(v/1000)}k"
     return f"${v:.0f}"
+
+
+# Light / Dark theme application
+_LIGHT = {
+    "PRIMARY": PRIMARY,
+    "PRIMARY_DARK": PRIMARY_DARK,
+    "PRIMARY_LIGHT": PRIMARY_LIGHT,
+    "BG_APP": BG_APP,
+    "BG_CARD": BG_CARD,
+    "BG_SIDEBAR": BG_SIDEBAR,
+    "BORDER": BORDER,
+    "DIVIDER": DIVIDER,
+    "TEXT_PRIMARY": TEXT_PRIMARY,
+    "TEXT_SECONDARY": TEXT_SECONDARY,
+    "TEXT_MUTED": TEXT_MUTED,
+    "TEXT_PLACEHOLDER": TEXT_PLACEHOLDER,
+    "SUCCESS": SUCCESS,
+    "SUCCESS_BG": SUCCESS_BG,
+    "WARNING": WARNING,
+    "WARNING_BG": WARNING_BG,
+    "DANGER": DANGER,
+    "DANGER_BG": DANGER_BG,
+    "ON_PRIMARY": "#FFFFFF",
+    "PRIMARY_CONTAINER": PRIMARY_LIGHT,
+}
+
+_DARK = {
+    "PRIMARY": "#90CAF9",
+    "PRIMARY_DARK": "#64B5F6",
+    "PRIMARY_LIGHT": "#0B2944",
+    "BG_APP": "#0B1220",
+    "BG_CARD": "#0F172A",
+    "BG_SIDEBAR": "#071021",
+    "BORDER": "#16202A",
+    "DIVIDER": "#111827",
+    "TEXT_PRIMARY": "#E6EEF8",
+    "TEXT_SECONDARY": "#A8B4C2",
+    "TEXT_MUTED": "#94A3B8",
+    "TEXT_PLACEHOLDER": "#7B8A99",
+    "SUCCESS": "#10B981",
+    "SUCCESS_BG": "#052017",
+    "WARNING": "#F59E0B",
+    "WARNING_BG": "#2A1F00",
+    "DANGER": "#EF4444",
+    "DANGER_BG": "#2A0F0F",
+    "ON_PRIMARY": "#0B1220",
+    "PRIMARY_CONTAINER": "#07263b",
+}
+
+
+def apply_theme(mode: str):
+    """Apply theme values to module-level names. Mode is 'Light' or 'Dark'."""
+    values = _LIGHT if (mode or "").lower() != "dark" else _DARK
+    g = globals()
+    for k, v in values.items():
+        g[k] = v

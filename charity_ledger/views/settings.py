@@ -89,7 +89,7 @@ def view(settings, on_save, on_reseed):
                     icon=ft.Icons.RESTART_ALT,
                     on_click=lambda e: on_reseed(),
                     style=ft.ButtonStyle(
-                        bgcolor=T.DANGER, color=ft.colors.ON_PRIMARY,
+                        bgcolor=T.DANGER, color=T.ON_PRIMARY,
                         shape=ft.RoundedRectangleBorder(radius=8),
                         elevation=0,
                         padding=ft.padding.symmetric(horizontal=18, vertical=10),

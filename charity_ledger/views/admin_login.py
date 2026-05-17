@@ -73,7 +73,7 @@ def view(page: ft.Page, on_login_success, on_back):
         shadow=ft.BoxShadow(
             spread_radius=0,
             blur_radius=30,
-            color="#0F172A20",
+            color=T.TEXT_PRIMARY,
             offset=ft.Offset(0, 10),
         ),
         content=ft.Column(
@@ -110,7 +110,7 @@ def view(page: ft.Page, on_login_success, on_back):
                     height=48,
                     style=ft.ButtonStyle(
                         bgcolor=T.PRIMARY,
-                        color="#FFFFFF",
+                        color=T.ON_PRIMARY,
                         shape=ft.RoundedRectangleBorder(radius=8),
                         elevation=2,
                         text_style=ft.TextStyle(weight=ft.FontWeight.W_700, size=15),
@@ -127,7 +127,7 @@ def view(page: ft.Page, on_login_success, on_back):
         gradient=ft.LinearGradient(
             begin=ft.alignment.top_left,
             end=ft.alignment.bottom_right,
-            colors=["#E0F2FE", "#EFF6FF", "#DBEAFE"],
+            colors=[T.PRIMARY_CONTAINER, T.PRIMARY],
         ),
         alignment=ft.alignment.center,
         content=form_container,

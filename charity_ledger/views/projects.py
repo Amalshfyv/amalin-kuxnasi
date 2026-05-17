@@ -200,7 +200,7 @@ def project_drawer_panel(project, on_close, on_edit, on_full_ledger, on_archive)
                 content=ft.Text(l, size=10, weight=ft.FontWeight.W_700, color=T.TEXT_SECONDARY),
                 width=28,
                 height=28,
-                bgcolor="#E5E7EB",
+                bgcolor=T.BG_CARD,
                 border_radius=999,
                 alignment=ft.alignment.center,
                 margin=ft.margin.only(left=-8 if i > 0 else 0),
@@ -212,7 +212,7 @@ def project_drawer_panel(project, on_close, on_edit, on_full_ledger, on_archive)
                 content=ft.Text(extra, size=10, weight=ft.FontWeight.W_700, color=T.TEXT_SECONDARY),
                 width=28,
                 height=28,
-                bgcolor="#E5E7EB",
+                bgcolor=T.BG_CARD,
                 border_radius=999,
                 alignment=ft.alignment.center,
                 margin=ft.margin.only(left=-8),
@@ -232,7 +232,7 @@ def project_drawer_panel(project, on_close, on_edit, on_full_ledger, on_archive)
     return ft.Container(
         width=420,
         height=820,
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         padding=ft.padding.all(24),
         content=ft.Column(
             [

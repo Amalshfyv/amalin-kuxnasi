@@ -177,7 +177,9 @@ def audit_dialog(tx, on_close, on_export_csv):
         ),
     )
 
-    def _field(label, value, value_color=T.TEXT_PRIMARY, weight=ft.FontWeight.W_700):
+    def _field(label, value, value_color=None, weight=ft.FontWeight.W_700):
+        if value_color is None:
+            value_color = T.TEXT_PRIMARY
         return ft.Container(
             padding=ft.padding.all(12),
             border=ft.border.all(1, T.BORDER),
@@ -258,6 +260,6 @@ def audit_dialog(tx, on_close, on_export_csv):
         modal=True,
         content=body,
         content_padding=0,
-        bgcolor=ft.colors.ON_PRIMARY,
+        bgcolor=T.BG_CARD,
         shape=ft.RoundedRectangleBorder(radius=14),
     )

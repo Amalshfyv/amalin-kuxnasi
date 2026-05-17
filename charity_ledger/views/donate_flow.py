@@ -10,8 +10,8 @@ def _stepper(active: int):
     def _step(num, label):
         is_active = num == active
         is_done = num < active
-        bg = T.PRIMARY if is_active else ("#FFFFFF")
-        fg = "#FFFFFF" if is_active else T.TEXT_MUTED
+        bg = T.PRIMARY if is_active else T.BG_CARD
+        fg = T.ON_PRIMARY if is_active else T.TEXT_MUTED
         border = T.PRIMARY if is_active or is_done else T.BORDER
         circle = ft.Container(
             content=ft.Text(str(num) if not is_done else "✓", size=12, weight=ft.FontWeight.W_700, color=fg if not is_done else T.PRIMARY),
@@ -52,7 +52,7 @@ def _topbar(on_admin):
     return ft.Container(
         height=64,
         padding=ft.padding.symmetric(horizontal=24, vertical=10),
-        bgcolor="#FFFFFF",
+        bgcolor=T.BG_CARD,
         border=ft.border.only(bottom=ft.BorderSide(1, T.BORDER)),
         content=ft.Row(
             [
@@ -102,7 +102,7 @@ def _public_footer():
     return ft.Container(
         padding=ft.padding.symmetric(horizontal=24, vertical=14),
         border=ft.border.only(top=ft.BorderSide(1, T.BORDER)),
-        bgcolor="#FFFFFF",
+        bgcolor=T.BG_CARD,
         content=ft.Row(
             [
                 ft.Text("© 2024 Charity Transparency Ledger.  System Status: Operational", size=11, color=T.TEXT_MUTED),
@@ -150,14 +150,14 @@ class DonateFlow:
             padding=ft.padding.all(14),
             border=ft.border.all(1, T.PRIMARY if sel else T.BORDER),
             border_radius=10,
-            bgcolor=T.PRIMARY_LIGHT if sel else "#FFFFFF",
+            bgcolor=T.PRIMARY_LIGHT if sel else T.BG_CARD,
             content=ft.Row(
                 [
                     ft.Container(
                         content=ft.Icon(icon, size=18, color=T.PRIMARY if sel else T.TEXT_SECONDARY),
                         width=36,
                         height=36,
-                        bgcolor=T.PRIMARY if sel else "#F1F5F9",
+                        bgcolor=T.PRIMARY if sel else T.BG_CARD,
                         border_radius=8,
                         alignment=ft.alignment.center,
                     ),
@@ -186,13 +186,13 @@ class DonateFlow:
             padding=ft.padding.symmetric(horizontal=10, vertical=10),
             border=ft.border.all(1, T.PRIMARY if sel else T.BORDER),
             border_radius=8,
-            bgcolor=T.PRIMARY if sel else "#FFFFFF",
+            bgcolor=T.PRIMARY if sel else T.BG_CARD,
             expand=True,
             content=ft.Text(
                 T.fmt_money(amt),
                 size=13,
                 weight=ft.FontWeight.W_700,
-                color="#FFFFFF" if sel else T.TEXT_PRIMARY,
+                color=T.ON_PRIMARY if sel else T.TEXT_PRIMARY,
                 text_align=ft.TextAlign.CENTER,
             ),
         )
@@ -209,7 +209,7 @@ class DonateFlow:
             padding=ft.padding.all(14),
             border=ft.border.all(1, T.PRIMARY if sel else T.BORDER),
             border_radius=10,
-            bgcolor=T.PRIMARY_LIGHT if sel else "#FFFFFF",
+            bgcolor=T.PRIMARY_LIGHT if sel else T.BG_CARD,
             content=ft.Row(
                 [
                     ft.Icon(icon, size=18, color=T.PRIMARY if sel else T.TEXT_SECONDARY),
@@ -273,8 +273,8 @@ class DonateFlow:
                     ft.ElevatedButton(
                         content=ft.Row(
                             [
-                                ft.Text("Continue to Payment", size=13, weight=ft.FontWeight.W_700, color="#FFFFFF"),
-                                ft.Icon(ft.Icons.CHEVRON_RIGHT, color="#FFFFFF", size=18),
+                                ft.Text("Continue to Payment", size=13, weight=ft.FontWeight.W_700, color=T.ON_PRIMARY),
+                                    ft.Icon(ft.Icons.CHEVRON_RIGHT, color=T.ON_PRIMARY, size=18),
                             ],
                             alignment=ft.MainAxisAlignment.CENTER,
                             spacing=4,
@@ -329,8 +329,8 @@ class DonateFlow:
                             ft.ElevatedButton(
                                 content=ft.Row(
                                     [
-                                        ft.Text("Confirm & Pay", size=13, weight=ft.FontWeight.W_700, color="#FFFFFF"),
-                                        ft.Icon(ft.Icons.LOCK_OUTLINED, color="#FFFFFF", size=14),
+                                        ft.Text("Confirm & Pay", size=13, weight=ft.FontWeight.W_700, color=T.ON_PRIMARY),
+                                            ft.Icon(ft.Icons.LOCK_OUTLINED, color=T.ON_PRIMARY, size=14),
                                     ],
                                     alignment=ft.MainAxisAlignment.CENTER,
                                     spacing=4,
@@ -486,7 +486,9 @@ class DonateFlow:
         self.page.update()
 
 
-def _kv(label, value, color=T.TEXT_PRIMARY):
+def _kv(label, value, color=None):
+    if color is None:
+        color = T.TEXT_PRIMARY
     return ft.Row(
         [
             ft.Text(label, size=12, color=T.TEXT_MUTED, weight=ft.FontWeight.W_600),

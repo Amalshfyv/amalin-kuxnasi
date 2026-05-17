@@ -34,8 +34,8 @@ def _kpi_strip_equal():
         kpi_card("Total Donors", f"{k['donors']:,}",
                  ft.Icons.PEOPLE_OUTLINE, delta="+48", delta_positive=True),
         kpi_card("Pending Verification", str(k["pending"]),
-                 ft.Icons.SCHEDULE, delta="-14", delta_positive=False,
-                 icon_bg="#FEF3C7", icon_fg=T.WARNING),
+             ft.Icons.SCHEDULE, delta="-14", delta_positive=False,
+             icon_bg=T.TIER_GOLD_BG, icon_fg=T.WARNING),
     ]
     return ft.Row(
         [ft.Container(c, expand=1) for c in cards],

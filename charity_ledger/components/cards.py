@@ -67,7 +67,7 @@ def progress_row(title, raised, goal, pct=None):
             ft.ProgressBar(
                 value=min(pct / 100, 1.0),
                 color=T.PRIMARY,
-                bgcolor="#E5EEF6",
+                    bgcolor=T.BG_CARD,
                 bar_height=6,
                 border_radius=999,
             ),
@@ -76,7 +76,11 @@ def progress_row(title, raised, goal, pct=None):
     )
 
 
-def avatar_initials(text, size=28, bg=T.PRIMARY_LIGHT, fg=T.PRIMARY):
+def avatar_initials(text, size=28, bg=None, fg=None):
+    if bg is None:
+        bg = T.PRIMARY_LIGHT
+    if fg is None:
+        fg = T.PRIMARY
     initials = "".join([w[0] for w in text.split()[:2]]).upper() if text else "?"
     return ft.CircleAvatar(
         content=ft.Text(initials, size=11, weight=ft.FontWeight.W_700),

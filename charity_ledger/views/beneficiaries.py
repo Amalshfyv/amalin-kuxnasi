@@ -31,7 +31,7 @@ def _beneficiary_card(b, on_change_project):
             [
                 ft.Row(
                     [
-                        avatar_initials(b["name"], size=36, bg="#F1F5F9", fg=T.TEXT_SECONDARY),
+                        avatar_initials(b["name"], size=36, bg=T.BG_CARD, fg=T.TEXT_SECONDARY),
                         ft.Container(width=10),
                         ft.Column(
                             [
@@ -89,7 +89,7 @@ def _beneficiary_card(b, on_change_project):
                 ft.ProgressBar(
                     value=min(pct / 100, 1.0),
                     color=T.PRIMARY,
-                    bgcolor="#E5EEF6",
+                    bgcolor=T.BG_CARD,
                     bar_height=5,
                     border_radius=999,
                 ),
@@ -120,7 +120,7 @@ def _kpi_strip():
         kpi_card("Total Disbursed", T.fmt_money_k(sum(b["funds_received"] for b in db.list_beneficiaries())),
                  ft.Icons.CHECK_CIRCLE_OUTLINE, icon_bg=T.SUCCESS_BG, icon_fg=T.SUCCESS),
         kpi_card("Active Links", str(sum(1 for b in db.list_beneficiaries() if b["project"])),
-                 ft.Icons.LINK, icon_bg="#EEF0FF", icon_fg="#6B6BE3"),
+             ft.Icons.LINK, icon_bg=T.TIER_PLATINUM_BG, icon_fg=T.TIER_PLATINUM_FG),
     ]
     return ft.Row([ft.Container(c, expand=1) for c in cards], spacing=14)
 

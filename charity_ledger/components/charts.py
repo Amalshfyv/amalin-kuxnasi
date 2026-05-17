@@ -2,7 +2,9 @@ import flet as ft
 from .. import theme as T
 
 
-def line_chart(labels, values, height=240, color=T.PRIMARY, fill=True):
+def line_chart(labels, values, height=240, color=None, fill=True):
+    if color is None:
+        color = T.PRIMARY
     max_v = max(values) if values else 1
     if max_v <= 0:
         max_v = 1
@@ -16,7 +18,7 @@ def line_chart(labels, values, height=240, color=T.PRIMARY, fill=True):
         below_line_gradient=ft.LinearGradient(
             begin=ft.alignment.top_center,
             end=ft.alignment.bottom_center,
-            colors=["#80BBDEFB", "#00FFFFFF"],
+            colors=[T.PRIMARY_LIGHT, "transparent"],
         ) if fill else None,
     )
 
@@ -47,7 +49,7 @@ def line_chart(labels, values, height=240, color=T.PRIMARY, fill=True):
             ],
             labels_size=24,
         ),
-        tooltip_bgcolor="#0F172AEE",
+        tooltip_bgcolor=T.BG_CARD,
         min_y=0,
         max_y=max_v * 1.05,
         min_x=0,
@@ -57,7 +59,9 @@ def line_chart(labels, values, height=240, color=T.PRIMARY, fill=True):
     )
 
 
-def bar_chart(labels, values, height=180, color=T.PRIMARY):
+def bar_chart(labels, values, height=180, color=None):
+    if color is None:
+        color = T.PRIMARY
     max_v = max(values) if values else 1
     if max_v <= 0:
         max_v = 1
